@@ -1,46 +1,29 @@
-import { Component } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormGroup,
+  FormControl,
+  Validators,
+  FormBuilder
+} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage {
-  username: string = '';
-  password: string = '';
+export class LoginPage implements OnInit {
 
-  constructor(private alertController: AlertController) {}
+  formularioLogin: FormGroup;
 
-  login() {
-    // Aquí puedes agregar la lógica de autenticación
-    console.log('Nombre de usuario:', this.username);
-    console.log('Contraseña:', this.password);
+  
+  constructor(public fb: FormBuilder) { 
+
+    this.formularioLogin = this.fb.group({
+      'nombre' : new FormControl("",Validators.required),
+      'password' : new FormControl("",Validators.required)
+    })
+  }  
+  ngOnInit() {
   }
 
-  async forgotPassword() {
-    const alert = await this.alertController.create({
-      header: 'Recuperación de contraseña',
-      message: 'Ingresa tu dirección de correo electrónico para recuperar tu contraseña.',
-      inputs: [
-        {
-          name: 'email',
-          type: 'email',
-          placeholder: 'Correo electrónico',
-        },
-      ],
-      buttons: [
-        'Cancelar',
-        {
-          text: 'Enviar',
-          handler: data => {
-            console.log('Correo electrónico para recuperación:', data.email);
-            // Aquí puedes agregar la lógica para enviar un correo de recuperación de contraseña
-          },
-        },
-      ],
-    });
-
-    await alert.present();
-  }
 }
