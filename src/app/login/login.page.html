@@ -1,27 +1,38 @@
-<ion-header>
-    <ion-toolbar>
-      <ion-title>
-        Iniciar sesión
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
-  
-  <ion-content class="ion-padding">
-    <form (ngSubmit)="login()">
-      <ion-item>
-        <ion-label position="floating">Nombre de usuario</ion-label>
-        <ion-input type="text" [(ngModel)]="username" name="username" required></ion-input>
+<ion-header [translucent]="true">
+  <ion-toolbar color ="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+ <ion-card>
+    <ion-card-header>
+    <ion-card-title>Login</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <form [formGroup] ="formularioLogin">
+      <ion-item> 
+        <ion-label position = "floating">Nombre de Usuario</ion-label> 
+        <ion-input formControlName = "nombre"></ion-input>
       </ion-item>
-  
-      <ion-item>
-        <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password" [(ngModel)]="password" name="password" required></ion-input>
+      <ion-item> 
+        <ion-label position = "floating">Contraseña</ion-label> 
+        <ion-input formControlName = "password" type="password"></ion-input>
       </ion-item>
-  
-      <ion-button expand="full" type="submit">Iniciar sesión</ion-button>
-    </form>
-  
-    <p class="ion-text-center">
-      <a href="#" (click)="forgotPassword()">¿Olvidaste tu contraseña?</a>
-    </p>
-  </ion-content>
+     </form>
+     <br>
+     <ion-button>
+      Ingresar
+     </ion-button>
+      <ion-button>¿Olvidaste tu contraseña?</ion-button>
+  </ion-card-content>
+ </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="end">
+    <ion-button [routerLink]="['/registro'] ">Registrarse</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>
