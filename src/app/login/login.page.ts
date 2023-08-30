@@ -36,6 +36,12 @@ export class LoginPage implements OnInit {
       
       if (usuario.nombre === f.nombre && usuario.password === f.password) {
         console.log('Ingreso exitoso');
+        const alert = await this.alertController.create({
+          header: 'Bienvenido',
+          message: 'Has ingresado correctamente',
+          buttons: ['Aceptar']
+        });
+        await alert.present();
       } else {
         const alert = await this.alertController.create({
           header: 'Datos incorrectos',
