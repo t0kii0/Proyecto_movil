@@ -16,27 +16,32 @@ export class RecuperarPage implements OnInit {
   constructor(public fb: FormBuilder,
     public alertController: AlertController) {
       this.formularioRecuperar = this.fb.group({
-        'nombreUsuario' : new FormControl("",Validators.required)  
+        'correo' : new FormControl("",Validators.required)  
       }) 
      }
 
   ngOnInit() {
   }
-  async guardar(){
-    var f = this.formularioRecuperar.value;
+  async recuperar(){
+    
+    var f =  localStorage.getItem('correo');
 
-    if(this.formularioRecuperar.invalid){
+    if(this.formularioRecuperar.invalid || f !== localStorage.getItem('correo')){
      const alert = await this.alertController.create({
        header: 'Datos incompletos',
-       message: 'Porfavor llenar todos los campos',
+       message: 'Porfavor ingresar correo valido',
        buttons: ['Aceptar'],
      });
      await alert.present();
      return;
-    }
-    var usuario = {
-     nombreUsuario: f.nombreUsuario,
-    }
-    localStorage.setItem('usuario',JSON.stringify(usuario));
+    }else{
+    const alert = await this.alertController.create({
+      header: 'su contraseña es',
+      message: 'su clave es esta: ',
+      buttons: ['Aceptar']
+    })
+    return await alert.present();
   }
+  }
+
 }
