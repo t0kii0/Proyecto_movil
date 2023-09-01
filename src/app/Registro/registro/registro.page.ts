@@ -19,7 +19,8 @@ export class RegistroPage implements OnInit {
     this.formularioRegistro = this.fb.group({
       'nombre' : new FormControl("",Validators.required),
       'password' : new FormControl("",Validators.required),
-      'confirmacionPassword': new FormControl("",Validators.required)
+      'confirmacionPassword': new FormControl("",Validators.required),
+      'correo' : new FormControl("",Validators.required),
     })
 
    }
@@ -41,7 +42,8 @@ export class RegistroPage implements OnInit {
      }
      var usuario = {
       nombre: f.nombre,
-      password: f.password
+      password: f.password,
+      correo: f.correo
      }
      localStorage.setItem('usuario',JSON.stringify(usuario));
   }
