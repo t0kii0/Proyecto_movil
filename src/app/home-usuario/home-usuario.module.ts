@@ -17,4 +17,4 @@ import { HomeUsuarioPage } from './home-usuario.page';
   ],
   declarations: [HomeUsuarioPage]
 })
-export class HomeUsuarioPageModule {}
+export class HomeUsuarioPageModule {} 
