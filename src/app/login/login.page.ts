@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   FormGroup,
   FormControl,
@@ -18,7 +19,7 @@ export class LoginPage implements OnInit {
 
   
   constructor(public fb: FormBuilder,  
-    public alertController: AlertController){
+    public alertController: AlertController, private router: Router){
 
     this.formularioLogin = this.fb.group({
       'nombre' : new FormControl("",Validators.required),
@@ -36,17 +37,20 @@ export class LoginPage implements OnInit {
       
       if (usuario.nombre === f.nombre && usuario.password === f.password) {
         console.log('Ingreso exitoso');
+        this.router.navigate(['/home-usuario']);
         const alert = await this.alertController.create({
           header: 'Bienvenido',
           message: 'Has ingresado correctamente',
-          buttons: ['Aceptar']
+          buttons: ['Aceptar'],
+          
         });
         await alert.present();
       } else {
         const alert = await this.alertController.create({
           header: 'Datos incorrectos',
           message: 'Los datos son incorrectos',
-          buttons: ['Aceptar']
+          buttons: ['Aceptar'],
+          
         });
         await alert.present();
       }
