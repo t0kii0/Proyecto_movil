@@ -17,6 +17,10 @@ export class LoginPage implements OnInit {
 
   formularioLogin: FormGroup;
 
+  usuarios = [
+    { nombre: 'Manuu', correo: 'manu@gmail.com', password: 'manu150',rol: 'conductor' },
+    { nombre: 'Angelo', correo: 'angelo@gmail.com', password: 'angelo150',rol: 'pasajero' },
+  ];
   
   constructor(public fb: FormBuilder,  
     public alertController: AlertController, private router: Router){
@@ -30,38 +34,24 @@ export class LoginPage implements OnInit {
   }
   async ingresar() {
     var f = this.formularioLogin.value;
-    var usuarioString = localStorage.getItem('usuario');
+    const usuario = this.usuarios.find(u => u.nombre === f.nombre && u.password === f.password); 
   
-    if (usuarioString !== null) {
-      var usuario = JSON.parse(usuarioString);
-      
-      if (usuario.nombre === f.nombre && usuario.password === f.password) {
-        console.log('Ingreso exitoso');
-        this.router.navigate(['/home-usuario']);
-        const alert = await this.alertController.create({
-          header: 'Bienvenido',
-          message: 'Has ingresado correctamente',
-          buttons: ['Aceptar'],
-          
-        });
-        await alert.present();
-      } else {
-        const alert = await this.alertController.create({
-          header: 'Datos incorrectos',
-          message: 'Los datos son incorrectos',
-          buttons: ['Aceptar'],
-          
-        });
-        await alert.present();
-      }
+    if (usuario) {
+      console.log('Ingreso exitoso');
+      this.router.navigate(['/home-usuario']);
+      const alert = await this.alertController.create({
+        header: 'Bienvenido',
+        message: 'Has ingresado correctamente',
+        buttons: ['Aceptar'],
+      });
+      await alert.present();
     } else {
       const alert = await this.alertController.create({
-        header: 'Usuario no encontrado',
-        message: 'No se encontró un usuario en el almacenamiento local.',
-        buttons: ['Aceptar']
+        header: 'Datos incorrectos',
+        message: 'Los datos son incorrectos',
+        buttons: ['Aceptar'],
       });
       await alert.present();
     }
   }
-  
 }

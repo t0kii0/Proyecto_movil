@@ -6,6 +6,7 @@ import {
   FormBuilder
 } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { LoginPage } from '../login/login.page';
 @Component({
   selector: 'app-recuperar',
   templateUrl: './recuperar.page.html',
@@ -23,10 +24,12 @@ export class RecuperarPage implements OnInit {
   ngOnInit() {
   }
   async recuperar(){
-    
-    var f =  localStorage.getItem('correo');
+    const recuperarClave = this.formularioRecuperar.value.correo;
+    var f =  LoginPage.prototype.usuarios;
 
-    if(this.formularioRecuperar.invalid || f !== localStorage.getItem('correo')){
+    const buscador = f.find(u => u.correo === recuperarClave);
+
+    if(!buscador){
      const alert = await this.alertController.create({
        header: 'Datos incompletos',
        message: 'Porfavor ingresar correo valido',
@@ -36,8 +39,8 @@ export class RecuperarPage implements OnInit {
      return;
     }else{
     const alert = await this.alertController.create({
-      header: 'su contraseña es',
-      message: 'su clave es esta: ',
+      header: 'su usuario es' + buscador.nombre,
+      message: 'su clave es esta: ' + buscador.password,
       buttons: ['Aceptar']
     })
     return await alert.present();
