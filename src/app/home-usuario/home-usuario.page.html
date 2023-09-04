@@ -38,14 +38,14 @@
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding"> 
-        <ion-card>
+        <ion-card *ngIf="usuarioRegistrado"  >
          
           <ion-card-content>
             
-            Usuario: ***************
+            Usuario:  {{ usuarioRegistrado.nombre }}
             <br>
             <br>
-            Email: ***************
+            Email: 
             <br>
             <br>
             Vehiculo: ***************
