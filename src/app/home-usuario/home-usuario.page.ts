@@ -8,9 +8,20 @@ import { Router } from '@angular/router';
 })
 export class HomeUsuarioPage implements OnInit {
 
-  constructor(private router: Router) { }
+  
+  usuarioRegistrado: any;
+  
+
+  constructor(private router: Router) { } 
 
   ngOnInit() {  
+    const usuarioStorage = localStorage.getItem('usuario');
+    
+
+    if (usuarioStorage) {
+      this.usuarioRegistrado = JSON.parse(usuarioStorage);
+    } 
+    
   }
   navegarA(opcion: String) {
     switch (opcion) {
