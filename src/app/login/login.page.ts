@@ -40,7 +40,7 @@ export class LoginPage implements OnInit {
       console.log('Ingreso exitoso');
       this.router.navigate(['/home-usuario']);
       const alert = await this.alertController.create({
-        header: 'Bienvenido',
+        header: 'Bienvenido ',
         message: 'Has ingresado correctamente',
         buttons: ['Aceptar'],
       });
