@@ -16,9 +16,20 @@ export class HomeUsuarioPage implements OnInit {
     { nombre: 'Angelo', correo: 'angelo@gmail.com', password: 'angelo150', rol: 'pasajero' },
   ];
 
-  constructor(private router: Router) { }
+  
+  usuarioRegistrado: any;
+  
+
+  constructor(private router: Router) { } 
 
   ngOnInit() {  
+    const usuarioStorage = localStorage.getItem('usuario');
+    
+
+    if (usuarioStorage) {
+      this.usuarioRegistrado = JSON.parse(usuarioStorage);
+    } 
+    
   }
   navegarA(opcion: String) {
     switch (opcion) {
