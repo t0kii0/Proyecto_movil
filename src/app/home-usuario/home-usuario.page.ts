@@ -32,7 +32,6 @@ export class HomeUsuarioPage implements OnInit {
     localStorage.removeItem('usuario');
     console.log('Después de eliminar el elemento');
 
-    // Redirige al usuario a la vista de inicio de sesión
     this.router.navigate(['/login']);
   }
   }

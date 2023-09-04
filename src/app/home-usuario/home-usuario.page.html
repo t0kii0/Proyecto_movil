@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>homeUsuario</ion-title>
+  <ion-toolbar color= "primary">
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="assets/icon/technology_gps_2.svg" alt="Logo" class="logo">
+      </div>
+    <ion-title >TellevoApp</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -8,17 +13,18 @@
   <ion-app>
     <ion-menu contentId="main-content">
       <ion-header>
-        <ion-toolbar color="tertiary">
+        <ion-toolbar color="primary">
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
       <ion-content class="ion-padding">
         <ion-list>
-          <ion-button (click)="navegarA('/Home')">Home</ion-button>
+          <ion-button id="sidemenu" color="dark" fill="clear" (click)="navegarA('/Home')">
+            <ion-icon slot="start" name="star"></ion-icon>Home</ion-button>
           <br>
-          <ion-button (click)="navegarA('/login')">Configuración</ion-button>
+          <ion-button color="dark" fill="clear" (click)="navegarA('/login')">Configuración</ion-button>
           <br>
-          <ion-button (click)="navegarA('/home-usuario')">Cuenta</ion-button>
+          <ion-button color="dark" fill="clear" (click)="navegarA('/home-usuario')">Cuenta</ion-button>
         </ion-list>
       </ion-content>
     </ion-menu>
@@ -26,20 +32,26 @@
       <ion-header>
         <ion-toolbar>
           <ion-buttons slot="start">
-           <ion-menu-button>boton</ion-menu-button>
            <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-title>Home</ion-title>
+          <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu.
+      <ion-content class="ion-padding"> 
         <ion-card>
-          <ion-card-header>
-            usuario
-          </ion-card-header>
+         
           <ion-card-content>
-            usuario
-            <!-- Agrega otros campos según tus datos de usuario -->
+            
+            Usuario: ***************
+            <br>
+            <br>
+            Email: ***************
+            <br>
+            <br>
+            Vehiculo: ***************
+            <br>
+            <br>
+
           </ion-card-content>
         </ion-card>
       </ion-content>
