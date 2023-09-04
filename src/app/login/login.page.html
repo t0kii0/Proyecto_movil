@@ -1,6 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar color ="primary">
-    <ion-title>Login</ion-title>
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="assets/icon/technology_gps_2.svg" alt="Logo" class="logo">
+      </div>
+    <ion-title>TellevoApp</ion-title>
+    </div>
   </ion-toolbar>
 </ion-header>
 
@@ -32,6 +37,11 @@
   <ion-toolbar color="primary">
     <ion-buttons slot ="end">
     <ion-button [routerLink]="['/registro'] ">Registrarse</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar color="primary">
+    <ion-buttons slot ="end">
+    <ion-button [routerLink]="['/home-usuario'] ">home usuario</ion-button>
     </ion-buttons>
   </ion-toolbar>
 
