@@ -6,7 +6,15 @@ import { Router } from '@angular/router';
   templateUrl: './home-usuario.page.html',
   styleUrls: ['./home-usuario.page.scss'],
 })
+
+
+
 export class HomeUsuarioPage implements OnInit {
+  
+  usuarios = [
+    { nombre: 'Manuu', correo: 'manu@gmail.com', password: 'manu150', rol: 'conductor' },
+    { nombre: 'Angelo', correo: 'angelo@gmail.com', password: 'angelo150', rol: 'pasajero' },
+  ];
 
   
   usuarioRegistrado: any;

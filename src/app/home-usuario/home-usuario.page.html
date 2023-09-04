@@ -37,18 +37,20 @@
           <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding"> 
-        <ion-card *ngIf="usuarioRegistrado"  >
+
+      <ion-content class="ion-padding" *ngFor="let dato of usuarios"> 
+        <ion-card>
          
           <ion-card-content>
             
-            Usuario:  {{ usuarioRegistrado.nombre }}
+            Usuario: {{dato.nombre}}
             <br>
             <br>
-            Email: 
+            Email: {{dato.correo}}
+
             <br>
             <br>
-            Vehiculo: ***************
+            Vehiculo: {{dato.rol}}
             <br>
             <br>
 
