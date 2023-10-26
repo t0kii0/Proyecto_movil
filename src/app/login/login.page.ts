@@ -8,23 +8,9 @@ import {
 } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ApiService} from '../services/user_services';
+import { IUserLogin} from '../User/UserLogin';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class ApiService {
-  apiUrl = 'https://staxsitmytxxwupentta.supabase.co/rest/v1/CONDUCTOR';
-
-  constructor(private http: HttpClient) {}
-
-  getData() {
-    const headers = new HttpHeaders({
-      'apiKey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0YXhzaXRteXR4eHd1cGVudHRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU3NzQ2NjksImV4cCI6MjAxMTM1MDY2OX0.zwia42h8na8h1p52H0L8B_-IkHAS-WooRAWP5nGlC2Q'
-    });
-
-    return this.http.get(this.apiUrl, { headers });
-  }
-}
 
 @Component({
   selector: 'app-login',
@@ -33,52 +19,59 @@ export class ApiService {
 })
 export class LoginPage implements OnInit {
 
-  formularioLogin: FormGroup;
+  formularioLogin = new FormGroup({
+    username: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+  })
 
-  usuarios = [
-    { nombre: 'Manuu', correo: 'manu@gmail.com', password: 'manu150', rol: 'conductor' },
-    { nombre: 'Angelo', correo: 'angelo@gmail.com', password: 'angelo150', rol: 'pasajero' },
-  ];
 
-  constructor(public fb: FormBuilder,
-    public alertController: AlertController, private router: Router, private http: HttpClient, private ApiService: ApiService) {
-    this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
-      'password': new FormControl("", Validators.required)
-    });
+   
+  constructor (private api: ApiService){
+  //constructor(public fb: FormBuilder,
+    //public alertController: AlertController, private router: Router, private http: HttpClient, private ApiService: ApiService) {
+    //this.formularioLogin = this.fb.group({
+      //'nombre': new FormControl("", Validators.required),
+      //'password': new FormControl("", Validators.required)
+    //});
   }
 
   ngOnInit() {
-    this.ApiService.getData().subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (error) => {
-        console.error('Error', error);
-      }
-    );
+    //this.ApiService.getData().subscribe(
+      //(res) => {
+        //console.log(res);
+      //},
+      //(error) => {
+        //console.error('Error', error);
+      //}
+    //);
+  }
+  onLogin(form: IUserLogin) {
+    this.api.getLogin(form).subscribe(data => {
+      console.log(data);
+    })
   }
 
   async ingresar() {
-    var f = this.formularioLogin.value;
-    const usuario = this.usuarios.find(u => u.nombre === f.nombre && u.password === f.password);
+    //var f = this.formularioLogin.value;
+    //const usuario = this.usuarios.find(u => u.nombre === f.nombre && u.password === f.password);
 
-    if (usuario) {
-      console.log('Ingreso exitoso');
-      this.router.navigate(['/home-usuario']);
-      const alert = await this.alertController.create({
-        header: 'Bienvenido ' + usuario.nombre,
-        message: 'Has ingresado correctamente',
-        buttons: ['Aceptar'],
-      });
-      await alert.present();
-    } else {
-      const alert = await this.alertController.create({
-        header: 'Datos incorrectos',
-        message: 'Los datos son incorrectos',
-        buttons: ['Aceptar'],
-      });
-      await alert.present();
-    }
-  }
+    //if (usuario) {
+      //console.log('Ingreso exitoso');
+      //this.router.navigate(['/home-usuario']);
+      //const alert = await this.alertController.create({
+        //header: 'Bienvenido ' + usuario.nombre,
+        //message: 'Has ingresado correctamente',
+        //buttons: ['Aceptar'],
+      //});
+      //await alert.present();
+    //} else {
+      //const alert = await this.alertController.create({
+        //header: 'Datos incorrectos',
+        //message: 'Los datos son incorrectos',
+        //buttons: ['Aceptar'],
+      //});
+      //await alert.present();
+    //}
+  //}
+}
 }
