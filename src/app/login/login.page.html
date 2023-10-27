@@ -16,7 +16,7 @@
     <ion-card-title>Login</ion-card-title>
   </ion-card-header>
   <ion-card-content>
-    <form [formGroup] ="formularioLogin" >
+    <form >
       <ion-item> 
         <ion-label position = "floating">Nombre de Usuario</ion-label> 
         <ion-input formControlName = "username"></ion-input>
@@ -27,7 +27,7 @@
       </ion-item>
      </form>
      <br>
-     <ion-button (click)="ingresar()">Ingresar
+     <ion-button (click)="userLogin(formularioLogin)">Ingresar
      </ion-button>
       <ion-button [routerLink]="['/recuperar'] ">¿Olvidaste tu contraseña?</ion-button>
   </ion-card-content>
