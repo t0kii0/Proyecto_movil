@@ -1,41 +1,47 @@
 import { Component, Injectable, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLinkWithHref } from '@angular/router';
 import {
   FormGroup,
   FormControl,
   Validators,
-  FormBuilder
+  FormBuilder,
+  FormsModule
 } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { AlertController, IonicModule } from '@ionic/angular';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { ApiService} from '../services/user_services';
-import { IUserLogin} from '../User/UserLogin';
-
+import { IUserLogin} from '../modelos/UserLogin';
+import { CommonModule, NgFor, NgForOf } from '@angular/common';
+import { firstValueFrom, lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
+  providers: [ApiService]
 })
 export class LoginPage implements OnInit {
 
-  formularioLogin = new FormGroup({
-    username: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  })
+  formularioLogin: IUserLogin = {
+    username: '',
+    password: ''
+  }
 
+  constructor(private route: Router, private _usuarioService: ApiService) {
 
+  }
    
-  constructor (private api: ApiService){
+  //constructor (private api: ApiService){
   //constructor(public fb: FormBuilder,
     //public alertController: AlertController, private router: Router, private http: HttpClient, private ApiService: ApiService) {
     //this.formularioLogin = this.fb.group({
       //'nombre': new FormControl("", Validators.required),
       //'password': new FormControl("", Validators.required)
     //});
-  }
+  //}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.formularioLoginRestart();
     //this.ApiService.getData().subscribe(
       //(res) => {
         //console.log(res);
@@ -45,33 +51,27 @@ export class LoginPage implements OnInit {
       //}
     //);
   }
-  onLogin(form: IUserLogin) {
-    this.api.getLogin(form).subscribe(data => {
-      console.log(data);
-    })
-  }
+  onLogin(){}
+    
+  
 
   async ingresar() {
-    //var f = this.formularioLogin.value;
-    //const usuario = this.usuarios.find(u => u.nombre === f.nombre && u.password === f.password);
 
-    //if (usuario) {
-      //console.log('Ingreso exitoso');
-      //this.router.navigate(['/home-usuario']);
-      //const alert = await this.alertController.create({
-        //header: 'Bienvenido ' + usuario.nombre,
-        //message: 'Has ingresado correctamente',
-        //buttons: ['Aceptar'],
-      //});
-      //await alert.present();
-    //} else {
-      //const alert = await this.alertController.create({
-        //header: 'Datos incorrectos',
-        //message: 'Los datos son incorrectos',
-        //buttons: ['Aceptar'],
-      //});
-      //await alert.present();
-    //}
-  //}
+
+}
+async userLogin(userLoginInfo: IUserLogin) {
+  const user_id = await lastValueFrom(this._usuarioService.getLoginUser(userLoginInfo));
+  console.log(user_id);
+  if (user_id) {
+    console.log("Usuario existe...");
+    this.route.navigate(['/user-type-menu'], { state: { userInfo: user_id}})
+  } else {
+    //NO EXISTE
+    console.log("Usuario no existe...");
+  }
+}
+formularioLoginRestart():void{
+  this.formularioLogin.username = '';
+  this.formularioLogin.password = '';
 }
 }

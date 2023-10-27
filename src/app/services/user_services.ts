@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable, catchError, map, of ,throwError } from "rxjs";
-import { IUserLogin } from '../User/UserLogin';
-import { ResponseI } from "../User/Response";
-
+import { IUserLogin } from '../modelos/UserLogin';
+import { ResponseI } from "../modelos/Response";
+import { UserModel}  from "../modelos/Usersmodel"
 @Injectable({ providedIn: 'root' 
 })
 export class ApiService {
@@ -15,13 +15,37 @@ export class ApiService {
     supabaseheaders = new HttpHeaders()
         .set('apikey', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0YXhzaXRteXR4eHd1cGVudHRhIiwicm9sZSI6ImFub24iLCJpYXQiOjE2OTU3NzQ2NjksImV4cCI6MjAxMTM1MDY2OX0.zwia42h8na8h1p52H0L8B_-IkHAS-WooRAWP5nGlC2Q')
 
-   
-    getLogin(form: IUserLogin): Observable<ResponseI>{
-        let direccion = this.URL_SUPABASE + 'auth';
-        return this.http.post<ResponseI>(direccion, form);
-    
+    getUserListSupaBase(): Observable<UserModel[]> {
+        return this._httpclient.get<UserModel[]>(this.URL_SUPABASE, { headers: this.supabaseheaders, responseType: 'json' });
     }
-    authUSer(): Observable<IUserLogin>{
-        return this._httpclient.get<IUserLogin>(this.URL_SUPABASE.concat('?username_cond=eq.manus'), {headers: this.supabaseheaders.set('Accept','application/vnd.pgrst.object+json'),responseType: 'json'})
+    getUser(user_id: string): Observable<UserModel> {
+        return this._httpclient.get<UserModel[]>(this.URL_SUPABASE + 'users?user_id=eq.' + user_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
+            map( (userInfo) => {
+                return userInfo[0];
+            })
+        );
+    }
+    authUser(): Observable<UserModel> {
+        return this._httpclient.get<UserModel>(this.URL_SUPABASE.concat('?username=eq.'), { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' })
+    }
+   
+    getLoginUser(iUserLogin: IUserLogin): Observable<string | any> {
+        return this._httpclient.get<any>(this.URL_SUPABASE + "users?username=eq." + iUserLogin.username + "&password=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
+            map((user) => {
+                console.log(user[0]);
+                return user[0].user_id;
+            }), catchError((err) => {
+                console.log(err)
+                return err;
+            })
+        );
+    }
+    getUserType(user_id: string){
+        return this._httpclient.get<any>(this.URL_SUPABASE+"users_type?user=eq."+user_id+"&select=id,created_at,user(*),type(*)", { headers: this.supabaseheaders}).pipe(
+            map((userInfo) => {
+                console.log(userInfo);
+                return userInfo;
+            })
+        )
     }
 }
