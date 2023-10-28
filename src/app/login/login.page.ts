@@ -26,7 +26,8 @@ export class LoginPage implements OnInit {
     username: '',
     password: ''
   }
-
+  login={username: '',
+  password: ''}
   constructor(private route: Router, private _usuarioService: ApiService) {
 
   }
@@ -41,7 +42,7 @@ export class LoginPage implements OnInit {
   //}
 
   ngOnInit(): void {
-    this.formularioLoginRestart();
+    //this.formularioLoginRestart();
     //this.ApiService.getData().subscribe(
       //(res) => {
         //console.log(res);
@@ -55,21 +56,30 @@ export class LoginPage implements OnInit {
     
   
 
-  async ingresar() {
+async ingresar() {
+  console.log(this.login);
+
 
 
 }
-async userLogin(userLoginInfo: IUserLogin) {
-  const user_id = await lastValueFrom(this._usuarioService.getLoginUser(userLoginInfo));
-  console.log(user_id);
-  if (user_id) {
-    console.log("Usuario existe...");
-    this.route.navigate(['/user-type-menu'], { state: { userInfo: user_id}})
-  } else {
-    //NO EXISTE
-    console.log("Usuario no existe...");
+async userLogin() {
+  try {
+    var user_id1 = await lastValueFrom(this._usuarioService.getLoginConductor(this.login))  ;
+    const user_id = user_id1 
+    console.log(user_id);
+    if (user_id) {
+      console.log("Usuario existe...");
+      this.route.navigate(['/home-usuario'], { state: { userInfo: user_id } });
+    } else {
+      // NO EXISTE
+      console.log("Usuario no existe...");
+    }
+  } catch (error) {
+    console.error("Error al iniciar sesión:", error);
   }
 }
+
+
 formularioLoginRestart():void{
   this.formularioLogin.username = '';
   this.formularioLogin.password = '';

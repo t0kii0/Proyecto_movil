@@ -7,6 +7,9 @@ import { UserModel}  from "../modelos/Usersmodel"
 @Injectable({ providedIn: 'root' 
 })
 export class ApiService {
+    getLoginUser(userLoginInfo: IUserLogin): Observable<unknown> {
+      throw new Error('Method not implemented.');
+    }
     URL_SUPABASE = 'https://staxsitmytxxwupentta.supabase.co/rest/v1/'
 
     constructor(private http: HttpClient, private _httpclient: HttpClient){
@@ -29,11 +32,22 @@ export class ApiService {
         return this._httpclient.get<UserModel>(this.URL_SUPABASE.concat('?username=eq.'), { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' })
     }
    
-    getLoginUser(iUserLogin: IUserLogin): Observable<string | any> {
-        return this._httpclient.get<any>(this.URL_SUPABASE + "users?username=eq." + iUserLogin.username + "&password=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
+   getLoginPasajero(iUserLogin: IUserLogin): Observable<string | any> {
+        return this._httpclient.get<any>(this.URL_SUPABASE + "PASAJERO?nombre_pas=eq." +  + "&password=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
             map((user) => {
                 console.log(user[0]);
                 return user[0].user_id;
+            }), catchError((err) => {
+                console.log(err)
+                return err;
+            })
+        );
+    }
+    getLoginConductor(iUserLogin: any): Observable<string | any> {
+        return this._httpclient.get<any>(this.URL_SUPABASE + "CONDUCTOR?username_cond=eq." + iUserLogin.username + "&pass_cond=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
+            map((user) => {
+                console.log(user[0]);
+                return user[0];
             }), catchError((err) => {
                 console.log(err)
                 return err;
