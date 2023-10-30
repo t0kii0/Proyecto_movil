@@ -1,51 +1,61 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormGroup,
-  FormControl,
-  Validators,
-  FormBuilder
-} from '@angular/forms';
+import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Registros } from '../../services/registrar_users/guardar_users';
+import { Registrar } from 'src/app/modelos/registro_model';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.page.html',
   styleUrls: ['./registro.page.scss'],
+  providers: [Registros]
 })
-export class RegistroPage implements OnInit {
+export class RegistroPage {
 
-  formularioRegistro: FormGroup;
-  constructor(public fb: FormBuilder,
-      public alertController: AlertController) {
+  formularioRegistro: FormGroup; // Utiliza un FormGroup para el formulario
+
+  constructor(
+    private alertController: AlertController,
+    private registrador: Registros,
+    private fb: FormBuilder
+  ) {
+    // Inicializa el formulario con las propiedades y las validaciones
     this.formularioRegistro = this.fb.group({
-      'nombre' : new FormControl("",Validators.required),
-      'password' : new FormControl("",Validators.required),
-      'confirmacionPassword': new FormControl("",Validators.required),
-      'correo' : new FormControl("",Validators.required),
-    })
-
-   }
-
-  ngOnInit() {
+      patente: ['MD7878', Validators.required],
+      name_cond: ['Angelo', Validators.required],
+      apellido_cond: ['Sepulveda', Validators.required],
+      pass_cond: ['', Validators.required],
+      username_cond: [''],
+      email: ['', [Validators.required, Validators.email]],
+    });
   }
 
-  async guardar(){
-     var f = this.formularioRegistro.value;
-
-     if(this.formularioRegistro.invalid){
+  async guardar() {
+    if(!this.formularioRegistro){
+      console.error('Error this.formulariore no deifinido...');
+      return;
+    }
+    if (this.formularioRegistro.invalid) {
       const alert = await this.alertController.create({
         header: 'Datos incompletos',
-        message: 'Porfavor llenar todos los campos',
+        message: 'Por favor, llenar todos los campos obligatorios.',
         buttons: ['Aceptar'],
       });
       await alert.present();
       return;
-     }
-     var usuario = {
-      nombre: f.nombre,
-      password: f.password,
-      correo: f.correo
-     }
-     localStorage.setItem('usuario',JSON.stringify(usuario));
-  }
+    }
 
+    // Obtén los valores del formulario
+    const formData = this.formularioRegistro.value;
+
+    // Llama a la función para guardar los datos
+    this.registrador.guardarUser(formData).subscribe(
+      (resultado) => {
+        console.log('Registro guardado con éxito:', resultado);
+      },
+      (error) => {
+        console.error('Error al guardar el registro:', error);
+      }
+    );
+  }
 }
