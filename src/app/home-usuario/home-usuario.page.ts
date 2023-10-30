@@ -1,5 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../services/user_services';
+import { HttpClient } from '@angular/common/http';
+import { UserModel } from '../modelos/Usersmodel';
+import { Observable, of } from 'rxjs';
+import { MostrarUsers } from '../services/home-user/home_users';
+import { catchError, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home-usuario',
@@ -11,26 +17,49 @@ import { Router } from '@angular/router';
 
 export class HomeUsuarioPage implements OnInit {
   
-  usuarios = [
-    { nombre: 'Manuu', correo: 'manu@gmail.com', password: 'manu150', rol: 'conductor' },
-    { nombre: 'Angelo', correo: 'angelo@gmail.com', password: 'angelo150', rol: 'pasajero' },
-  ];
+  userInfoReceived$: Observable<UserModel | null>;
+  idUserHtmlRouterLink: any;
+  user_id!: string;
+  userList: any;
 
-  
-  usuarioRegistrado: any;
-  
-
-  constructor(private router: Router) { } 
-
-  ngOnInit() {  
-    const usuarioStorage = localStorage.getItem('usuario');
-    
-
-    if (usuarioStorage) {
-      this.usuarioRegistrado = JSON.parse(usuarioStorage);
-    } 
+  constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarUsers) 
+  { 
+    this.user_id = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
+    this.userInfoReceived$ = this._userService.getUser(this.user_id)
     
   }
+
+
+  ngOnInit() {  
+    this.getUserType();
+    //this.getUserInfo();
+  }
+  async getUserType(){
+    
+    console.log(this.user_id);
+    
+    if (this.user_id) {
+      this.userInfoReceived$ = this._userService.getUser(this.user_id).pipe(
+        catchError((error) => {
+          console.log('Error al obtener el usuario', error);
+          return of(null);
+        }),
+        tap((data) => {
+          if (data) {
+            console.log('Usuario', data);
+          } else {
+            console.log('No se pudo obtener el usuario');
+            console.log(this.user_id);
+            console.log(data);
+          }
+          this.cdr.detectChanges();
+        })
+      );
+    } else {
+      console.log('user_id es undefined, no se puede realizar la solicitud a Supabase.');
+    }
+  }
+  
   navegarA(opcion: String) {
     switch (opcion) {
       case 'home':
@@ -53,4 +82,5 @@ export class HomeUsuarioPage implements OnInit {
 
     this.router.navigate(['/login']);
   }
-  }
+  
+}

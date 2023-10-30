@@ -22,7 +22,7 @@ export class ApiService {
         return this._httpclient.get<UserModel[]>(this.URL_SUPABASE, { headers: this.supabaseheaders, responseType: 'json' });
     }
     getUser(user_id: string): Observable<UserModel> {
-        return this._httpclient.get<UserModel[]>(this.URL_SUPABASE + 'users?user_id=eq.' + user_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
+        return this._httpclient.get<UserModel[]>(this.URL_SUPABASE + 'CONDUCTOR?username_cond=eq.' + user_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
             map( (userInfo) => {
                 return userInfo[0];
             })
@@ -55,7 +55,7 @@ export class ApiService {
         );
     }
     getUserType(user_id: string){
-        return this._httpclient.get<any>(this.URL_SUPABASE+"users_type?user=eq."+user_id+"&select=id,created_at,user(*),type(*)", { headers: this.supabaseheaders}).pipe(
+        return this._httpclient.get<any>(this.URL_SUPABASE+"CONDUCTOR?username_cond=eq."+user_id+"&select=id,created_at,user(*),type(*)", { headers: this.supabaseheaders}).pipe(
             map((userInfo) => {
                 console.log(userInfo);
                 return userInfo;
