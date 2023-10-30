@@ -1,4 +1,5 @@
 export interface Registrar{
+    
     invalid: any;
     patente: string;
     name_cond: string;

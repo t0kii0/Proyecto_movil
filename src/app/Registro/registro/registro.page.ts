@@ -21,9 +21,9 @@ export class RegistroPage {
   ) {
     // Inicializa el formulario con las propiedades y las validaciones
     this.formularioRegistro = this.fb.group({
-      patente: ['MD7878', Validators.required],
-      name_cond: ['Angelo', Validators.required],
-      apellido_cond: ['Sepulveda', Validators.required],
+      patente: ['MD7979', Validators.required],
+      name_cond: ['Felipe', Validators.required],
+      apellido_cond: ['martinez', Validators.required],
       pass_cond: ['', Validators.required],
       username_cond: [''],
       email: ['', [Validators.required, Validators.email]],
@@ -32,7 +32,7 @@ export class RegistroPage {
 
   async guardar() {
     if(!this.formularioRegistro){
-      console.error('Error this.formulariore no deifinido...');
+      console.error('Error this.formulario... no deifinido...');
       return;
     }
     if (this.formularioRegistro.invalid) {
