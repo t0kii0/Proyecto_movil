@@ -1,0 +1,38 @@
+<ion-header >
+  <ion-toolbar color ="primary">
+    <ion-button slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-button>
+    <ion-title>TellevoApp</ion-title> 
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Registro Pasajero</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+    <form [formGroup] ="formularioRegistroPasajero" >
+      <ion-item> 
+        <ion-label position = "floating">Nombre</ion-label> 
+        <ion-input formControlName = "nombre_pas"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label position = "floating">Apellido</ion-label> 
+        <ion-input formControlName = "apellido_pas"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label position = "floating">Telefono</ion-label> 
+        <ion-input formControlName = "telefono"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label position = "floating">Contraseña</ion-label> 
+        <ion-input formControlName = "pass_pasajero" type="password"></ion-input>
+      </ion-item>
+      <br>
+      <ion-button (click)="guardarPasajero()">Registrarse</ion-button>
+    </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

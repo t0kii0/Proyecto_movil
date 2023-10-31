@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
 import { Registros } from '../../services/registrar_users/guardar_users';
-import { Registrar } from 'src/app/modelos/registro_model';
+import { Registrar } from 'src/app/modelos/registro_model'; 
 
 @Component({
   selector: 'app-registro',
@@ -21,7 +21,7 @@ export class RegistroPage {
     private fb: FormBuilder
   ) {
     // Inicializa el formulario con las propiedades y las validaciones
-    this.formularioRegistro = this.fb.group({
+    this.formularioRegistro = this.fb.group({ 
       patente: ['', Validators.required],
       name_cond: ['', Validators.required],
       apellido_cond: ['', Validators.required],

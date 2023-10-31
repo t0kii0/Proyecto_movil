@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { RegistroAutoPage } from './registro-auto.page';
 
-const routes: Routes = [
+const routes: Routes = [ 
   {
     path: '',
     component: RegistroAutoPage

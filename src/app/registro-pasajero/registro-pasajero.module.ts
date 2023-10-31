@@ -1,20 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 import { IonicModule } from '@ionic/angular';
 
-import { RegistroAutoPageRoutingModule } from './registro-auto-routing.module';
+import { RegistroPasajeroPageRoutingModule } from './registro-pasajero-routing.module';
 
-import { RegistroAutoPage } from './registro-auto.page';
+import { RegistroPasajeroPage } from './registro-pasajero.page';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule, 
+    FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RegistroAutoPageRoutingModule
+    RegistroPasajeroPageRoutingModule
   ],
-  declarations: [RegistroAutoPage]
+  declarations: [RegistroPasajeroPage]
 })
-export class RegistroAutoPageModule {}
+export class RegistroPasajeroPageModule {}

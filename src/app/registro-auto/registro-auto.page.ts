@@ -15,7 +15,7 @@ import { RegistrarAuto } from 'src/app/modelos/registro_auto';
 export class RegistroAutoPage {
   
   formularioRegistroAuto: FormGroup; // Utiliza un FormGroup para el formulario
-  route: any;
+  
 
   constructor(
     private alertController: AlertController,
@@ -35,7 +35,7 @@ export class RegistroAutoPage {
   async guardarAuto() {
     if(!this.formularioRegistroAuto){ 
       console.error('Error this.formulario... no deifinido...');
-      this.route.navigate(['/registro']);
+      
       return;
     }
     if (this.formularioRegistroAuto.invalid) {
@@ -54,12 +54,15 @@ export class RegistroAutoPage {
     // Llama a la función para guardar los datos
     this.registrador.guardarAuto(formDataAuto).subscribe(
       (resultado = this.guardarAuto) => {
+        
         console.log('Registro guardado con éxito:', resultado);
+        
       },
       (error ) => {
         console.error('Error al guardar el registro:', error);
       }
     );
+
   }
 }
 
