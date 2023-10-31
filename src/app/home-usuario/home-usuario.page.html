@@ -37,15 +37,14 @@
           <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
-      <ion-content class="ion-padding" *ngIf="userInfoReceived$ | async as ch" > 
-        <ion-card >        
-          <ion-card-content >
-          
+      <ion-content class="ion-padding"  > 
+        <ion-card *ngIf="user_id">        
+          <ion-card-content >         
             <ion-item>
-              <ion-label>Nombre: {{ ch.username }}</ion-label>
+              <ion-label>Nombre: {{ user_id }}</ion-label>
             </ion-item>
             <ion-item>
-              <ion-label>Correo: {{ ch.email }}</ion-label>
+              <ion-label>Correo: {{ user_id }}</ion-label>
             </ion-item>
      
           </ion-card-content>
@@ -57,7 +56,7 @@
 <ion-footer>
   <ion-toolbar color="primary">
     <ion-buttons slot ="end">
-    <ion-button [routerLink]="['/login'] " >Cerrar sesion</ion-button>
+    <ion-button (click)="salir()"[routerLink]="['/login'] " >Cerrar sesion</ion-button>
     </ion-buttons>
   </ion-toolbar> 
 

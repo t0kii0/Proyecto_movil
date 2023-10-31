@@ -33,25 +33,8 @@ export class LoginPage implements OnInit {
 
   }
    
-  //constructor (private api: ApiService){
-  //constructor(public fb: FormBuilder,
-    //public alertController: AlertController, private router: Router, private http: HttpClient, private ApiService: ApiService) {
-    //this.formularioLogin = this.fb.group({
-      //'nombre': new FormControl("", Validators.required),
-      //'password': new FormControl("", Validators.required)
-    //});
-  //}
-
   ngOnInit(): void {
-    //this.formularioLoginRestart();
-    //this.ApiService.getData().subscribe(
-      //(res) => {
-        //console.log(res);
-      //},
-      //(error) => {
-        //console.error('Error', error);
-      //}
-    //);
+
   }
   onLogin(){}
     
@@ -66,10 +49,11 @@ async ingresar() {
 async userLogin() {
   try {
     var user_id1 = await lastValueFrom(this._usuarioService.getLoginConductor(this.login))  ;
-    const user_id = user_id1 
+    const user_id = user_id1.toString(); 
     console.log(user_id);
     if (user_id) {
       console.log("Usuario existe...");
+      localStorage.setItem('user_id',JSON.stringify(user_id));
       this.route.navigate(['/home-usuario'], { state: { userInfo: user_id } });
     } else {
       // NO EXISTE
