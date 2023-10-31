@@ -53,7 +53,7 @@ export class RegistroAutoPage {
 
     // Llama a la función para guardar los datos
     this.registrador.guardarAuto(formDataAuto).subscribe(
-      (resultado) => {
+      (resultado = this.guardarAuto) => {
         console.log('Registro guardado con éxito:', resultado);
       },
       (error ) => {

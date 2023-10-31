@@ -35,7 +35,7 @@
         <ion-input formControlName = "cant_asiento"></ion-input>
       </ion-item>
       <br>
-      <ion-button (click)="guardarAuto()">Registrar Vehiculo</ion-button>
+      <ion-button [routerLink]="['/registro']" (click)="guardarAuto()"  >Registrar Vehiculo</ion-button>
     </form>
     </ion-card-content>
   </ion-card>
