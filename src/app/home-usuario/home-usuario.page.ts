@@ -24,9 +24,10 @@ export class HomeUsuarioPage implements OnInit {
 
   constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarUsers) 
   { 
-    this.user_id = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
-    this.userInfoReceived$ = this._userService.getUser(this.user_id)
-    
+    //this.user_id = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
+    //this.userInfoReceived$ = this._userService.getUser(this.user_id)
+    this.user_id = JSON.parse(localStorage.getItem('user_id') || '') || '';
+    this.userInfoReceived$ = this._userService.getUser(this.user_id);
   }
 
 
@@ -39,6 +40,7 @@ export class HomeUsuarioPage implements OnInit {
     console.log(this.user_id);
     
     if (this.user_id) {
+      
       this.userInfoReceived$ = this._userService.getUser(this.user_id).pipe(
         catchError((error) => {
           console.log('Error al obtener el usuario', error);
@@ -46,7 +48,7 @@ export class HomeUsuarioPage implements OnInit {
         }),
         tap((data) => {
           if (data) {
-            console.log('Usuario', data);
+            console.log('user_id', data);
           } else {
             console.log('No se pudo obtener el usuario');
             console.log(this.user_id);
@@ -77,7 +79,7 @@ export class HomeUsuarioPage implements OnInit {
   }
   salir(){
     console.log('Antes de eliminar el elemento');
-    localStorage.removeItem('usuario');
+    localStorage.removeItem('user_id');
     console.log('Después de eliminar el elemento');
 
     this.router.navigate(['/login']);
