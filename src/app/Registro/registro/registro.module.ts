@@ -11,7 +11,7 @@ import { RegistroPage } from './registro.page';
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, 
     ReactiveFormsModule,
     IonicModule,
     RegistroPageRoutingModule
