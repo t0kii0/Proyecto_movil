@@ -26,7 +26,8 @@ export class LoginPage implements OnInit {
     username: '',
     password: ''
   }
-  login={username: '',
+  login={
+  username: '',
   password: ''}
   constructor(private route: Router, private _usuarioService: ApiService) {
 

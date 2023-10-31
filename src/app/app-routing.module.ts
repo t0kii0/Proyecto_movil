@@ -27,6 +27,10 @@ const routes: Routes = [
   },  {
     path: 'test',
     loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
+  },
+  {
+    path: 'registro-auto',
+    loadChildren: () => import('./registro-auto/registro-auto.module').then( m => m.RegistroAutoPageModule)
   }
 
   
