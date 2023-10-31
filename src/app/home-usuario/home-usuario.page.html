@@ -37,23 +37,17 @@
           <ion-title></ion-title>
         </ion-toolbar>
       </ion-header>
-
-      <ion-content class="ion-padding" *ngFor="let dato of usuarios"> 
-        <ion-card>
-         
-          <ion-card-content>
-            
-            Usuario: {{dato.nombre}}
-            <br>
-            <br>
-            Email: {{dato.correo}}
-
-            <br>
-            <br>
-            Vehiculo: {{dato.rol}}
-            <br>
-            <br>
-
+      <ion-content class="ion-padding" *ngIf="userInfoReceived$ | async as ch" > 
+        <ion-card >        
+          <ion-card-content >
+          
+            <ion-item>
+              <ion-label>Nombre: {{ ch.username }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Correo: {{ ch.email }}</ion-label>
+            </ion-item>
+     
           </ion-card-content>
         </ion-card>
       </ion-content>
