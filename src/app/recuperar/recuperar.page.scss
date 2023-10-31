@@ -22,7 +22,7 @@ ion-title {
     font-weight: bold;
   }
   ion-button:hover {
-    animation: vibrate 0.3s ease infinite;
+    animation: vibrate 0.3s;
   }
   
   @keyframes vibrate {

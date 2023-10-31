@@ -53,4 +53,7 @@ export class HomeUsuarioPage implements OnInit {
 
     this.router.navigate(['/login']);
   }
+  
+    
+  
   }
