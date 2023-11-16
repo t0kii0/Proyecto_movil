@@ -12,12 +12,9 @@ import { catchError, tap } from 'rxjs/operators';
   templateUrl: './home-usuario.page.html',
   styleUrls: ['./home-usuario.page.scss'],
 })
-
-
-
-export class HomeUsuarioPage implements OnInit {
+export class HomeUsuarioPage {
   
-  userInfoReceived$: Observable<UserModel | null>;
+  userInfoReceived$: Observable<UserModel | null>; 
   idUserHtmlRouterLink: any;
   user_id!: string;
   userList: any;

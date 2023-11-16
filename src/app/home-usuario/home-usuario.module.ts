@@ -1,11 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
-import { IonicModule } from '@ionic/angular';
-
+import { IonicModule } from '@ionic/angular'; 
 import { HomeUsuarioPageRoutingModule } from './home-usuario-routing.module';
-
 import { HomeUsuarioPage } from './home-usuario.page';
 import { LoginPage } from '../login/login.page';
 

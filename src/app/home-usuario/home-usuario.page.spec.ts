@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { IonicModule } from '@ionic/angular';
 import { HomeUsuarioPage } from './home-usuario.page';
 
 describe('HomeUsuarioPage', () => {
@@ -14,4 +15,4 @@ describe('HomeUsuarioPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+}); 
