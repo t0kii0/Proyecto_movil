@@ -1,8 +1,9 @@
-export interface Solicitud{  
+export interface MoldeViajes{  
+
     id_viaje: number;
     origen: string;
     destino: string;
     asientos: number;
-    estado: boolean;
+    //estado: boolean;
     
 }
