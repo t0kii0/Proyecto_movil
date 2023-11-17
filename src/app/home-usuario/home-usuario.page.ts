@@ -81,4 +81,9 @@ export class HomeUsuarioPage {
 
     this.router.navigate(['/login']);
   }
+  entrar(){
+    console.log('entrando jeje');
+    this.router.navigate(['/viajes'])
+    
+}
 }
