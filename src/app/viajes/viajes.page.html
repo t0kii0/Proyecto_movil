@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color ="primary">
+    <div class="header-content">
+      <div class="logo-container">
+        <img src="assets/icon/technology_gps_2.svg" alt="Logo" class="logo">
+      </div>
+    <ion-title>TellevoApp</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+ 
+ <ion-card>
+    <ion-card-header>
+    <ion-card-title>Crear Viajes</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    
+      <ion-item> 
+        <ion-label position="floating">Origen</ion-label> 
+        <ion-input [(ngModel)]="origen"></ion-input>
+      </ion-item>
+      <ion-item> 
+        <ion-label position="floating">Destino</ion-label> 
+        <ion-input [(ngModel)]="destino" type="text"></ion-input>
+      </ion-item>
+     <ion-button>Crear Viaje</ion-button>
+
+  </ion-card-content>
+ </ion-card>
+</ion-content>
+<ion-footer>
+
+  
+</ion-footer>
