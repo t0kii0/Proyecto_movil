@@ -1,9 +1,9 @@
-export interface MoldeViajes{  
+export interface ModelViajes{  
 
     id_viaje: number;
     origen: string;
     destino: string;
     asientos: number;
-    //estado: boolean;
+    estado: string;
     
 }

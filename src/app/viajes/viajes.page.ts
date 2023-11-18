@@ -12,8 +12,8 @@ import { AppComponent } from '../app.component';
   selector: 'app-viajes',
   templateUrl: './viajes.page.html',
   styleUrls: ['./viajes.page.scss'],
-  imports: [BrowserModule, IonicModule,AppRoutingModule,ReactiveFormsModule],
-  standalone: true,
+  
+  
 })
 
 export class ViajesPage implements OnInit {
@@ -26,10 +26,11 @@ export class ViajesPage implements OnInit {
   ) {
     // Inicializa el formulario con las propiedades y las validaciones
     this.formularioViaje = this.fb.group({ 
+      
       origen: ['', Validators.required],
       destino: ['', Validators.required],
       asientos_disp: ['', Validators.required],
-      
+      estado: [true]
     });
   }
   ngOnInit(){
@@ -37,6 +38,7 @@ export class ViajesPage implements OnInit {
   }
 
   async guardar() {
+    console.log("aquii")
     if(!this.formularioViaje){
       console.error('Error this.formulario... no deifinido...');
       return;
