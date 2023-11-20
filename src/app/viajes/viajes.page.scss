@@ -1,0 +1,65 @@
+ion-menu::part(backdrop) {
+    background-color: rgba(255, 0, 255, 0.5);
+  }
+  
+  ion-menu::part(container) {
+    border-radius: 0 20px 20px 0;
+  
+    box-shadow: 4px 0px 16px rgb(166, 206, 116);
+  }
+  ion-title {
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: greenyellow;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  ion-card{
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  ion-button{
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: greenyellow;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  ion-button:hover {
+    animation: vibrate 0.3s;
+  }
+  
+  @keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-5px);
+    }
+    80% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .header-content {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .logo-container {
+    margin-right: 1px; 
+  }
+  
+  .logo {
+    width: 50px; 
+    height: auto; 
+    margin-left: 15px;
+  }
