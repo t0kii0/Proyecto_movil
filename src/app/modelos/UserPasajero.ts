@@ -1,3 +1,6 @@
+import { Type } from "@angular/core"
+import { TypeUser } from "../modelos/Response"
+
 export interface UserPasajero {
 
     user_id: string
