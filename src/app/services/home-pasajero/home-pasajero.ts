@@ -6,7 +6,7 @@ import { Observable, catchError, map } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class MostrarUsers {
+export class MostrarPasajero {
 
   supabaseURL = "https://staxsitmytxxwupentta.supabase.co/rest/v1/";
   supabaseHttpHeaders = new HttpHeaders()

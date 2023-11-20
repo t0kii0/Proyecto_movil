@@ -4,7 +4,7 @@ import { ApiService } from '../services/user_services';
 import { HttpClient } from '@angular/common/http';
 import { UserPasajero } from '../modelos/UserPasajero';
 import { Observable, of } from 'rxjs';
-import { MostrarUsers } from '../services/home-user/home_users';
+import { MostrarPasajero } from '../services/home-pasajero/home-pasajero';
 import { catchError, tap } from 'rxjs/operators';
 
 @Component({
@@ -19,7 +19,7 @@ export class HomePage {
   user_id!: string;
   userList: any;
 
-  constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarUsers) 
+  constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarPasajero) 
   { 
     //this.user_id = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
     //this.userInfoReceived$ = this._userService.getUser(this.user_id)
