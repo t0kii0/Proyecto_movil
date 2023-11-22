@@ -47,6 +47,8 @@ async ingresar() {
 userType: string = 'conductor';
 async userLogin() {
   try {
+
+
     this.userType=this.userType=='conductor'?'usuario':'pasajero';
     let user;
     console.log("Usuario existe...");
@@ -58,15 +60,15 @@ async userLogin() {
       user = await lastValueFrom(this._usuarioService.getLoginPasajero(this.login));
     }
     console.log("Usuario existe...", user);
-    const user_id = user.toString();
-    console.log(user_id);
+    console.log(user);
     
-    if (user_id) {
+    if (user) {
       console.log("Usuario existe...");
-      localStorage.setItem('user_id', JSON.stringify(user_id));
+      localStorage.setItem('user_id', JSON.stringify(user));
       console.log("Usuario existe...");
-      this.route.navigate([`/home-${this.userType}`], { state: { userInfo: user_id } });
+      this.route.navigate([`/home-${this.userType}`], { state: { userInfo: user } });
       
+
     } else {
       // NO EXISTE
       console.log("Usuario no existe...");
