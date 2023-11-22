@@ -45,7 +45,7 @@ export class ApiService {
         return this._httpclient.get<any>(this.URL_SUPABASE + "PASAJERO?nombre_pas=eq." + iUserLogin.username  + "&pass_pasajero=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
             map((user) => {
                 console.log(user[0]);
-                return user[0].pasajero_id;
+                return user[0];
             }), catchError((err) => {
                 console.log(err)
                 return err;

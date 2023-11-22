@@ -16,7 +16,7 @@ export class HomePasajeroPage {
 
   PasajeroInfoReceived$: Observable<UserPasajero | null>; 
   idUserHtmlRouterLink: any;
-  user_id!: string;
+  user_id!: any;
   userList: any;
 
   constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarUsers)
