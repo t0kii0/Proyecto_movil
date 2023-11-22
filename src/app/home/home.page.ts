@@ -6,11 +6,14 @@ import { UserPasajero } from '../modelos/UserPasajero';
 import { Observable, of } from 'rxjs';
 import { MostrarPasajero } from '../services/home-pasajero/home-pasajero';
 import { catchError, tap } from 'rxjs/operators';
+import { IonicModule } from '@ionic/angular';
+import { MapComponent } from './map/map.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
+  imports:  [IonicModule,MapComponent],
 })
 export class HomePage {
 

@@ -1,11 +1,11 @@
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, NgModule, OnInit,CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrearViajes } from '../services/crear-viajes/registrar-viajes';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AlertController, IonicModule } from '@ionic/angular';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from '../app-routing.module';
-import { AppComponent } from '../app.component';
+import { MapComponent } from '../home/map/map.component';
 
 
 @Component({
