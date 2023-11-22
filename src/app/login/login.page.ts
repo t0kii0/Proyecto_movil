@@ -49,12 +49,12 @@ async ingresar() {
 async userLogin() {
   try {
     var user_id1 = await lastValueFrom(this._usuarioService.getLoginConductor(this.login))  ;
-    const user_id = user_id1.toString(); 
-    console.log(user_id);
-    if (user_id) {
+    //const user_id = user_id1.toString();
+    console.log(user_id1);
+    if (user_id1 && user_id1.patente) {
       console.log("Usuario existe...");
-      localStorage.setItem('user_id',JSON.stringify(user_id));
-      this.route.navigate(['/home-usuario'], { state: { userInfo: user_id } });
+      localStorage.setItem('user_id',JSON.stringify(user_id1));
+      this.route.navigate(['/home-usuario'], { state: { userInfo: user_id1 } });
     } else {
       // NO EXISTE
       console.log("Usuario no existe...");

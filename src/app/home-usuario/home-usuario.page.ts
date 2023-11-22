@@ -16,7 +16,7 @@ export class HomeUsuarioPage {
   
   userInfoReceived$: Observable<UserModel | null>; 
   idUserHtmlRouterLink: any;
-  user_id!: string;
+  user_id!: any;
   userList: any;
 
   constructor(private cdr: ChangeDetectorRef,private router: Router, private _userService: ApiService, private Httpclient: HttpClient, private _mostrarUser: MostrarUsers) 
@@ -24,6 +24,8 @@ export class HomeUsuarioPage {
     //this.user_id = this.router.getCurrentNavigation()?.extras.state?.['userInfo'];
     //this.userInfoReceived$ = this._userService.getUser(this.user_id)
     this.user_id = JSON.parse(localStorage.getItem('user_id') || '') || '';
+    console.log(JSON.stringify(this.user_id));
+    console.log(localStorage.getItem('user_id'));
     this.userInfoReceived$ = this._userService.getUser(this.user_id);
   }
 
