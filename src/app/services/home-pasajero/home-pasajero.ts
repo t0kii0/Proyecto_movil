@@ -16,7 +16,7 @@ export class MostrarPasajero {
 
 
   getUserType(user_id: string): Observable<any>{
-    console.log("[src][app][services][MostrarUsers][home_users]")
+    console.log("[src][app][services][MostrarPasajero][home_pasajero.ts][getUserType]")
     return this._httpclient.get<any>(this.supabaseURL+'PASAJERO?user_id=eq.'+user_id, { headers: this.supabaseHttpHeaders, responseType: 'json'}).pipe(
       map( (data) => {
         console.log(data);

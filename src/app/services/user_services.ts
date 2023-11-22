@@ -4,6 +4,7 @@ import { Observable, catchError, map, of ,throwError } from "rxjs";
 import { IUserLogin } from '../modelos/UserLogin';
 import { ResponseI } from "../modelos/Response";
 import { UserModel}  from "../modelos/Usersmodel"
+import { UserPasajero } from "../modelos/UserPasajero";
 @Injectable({ providedIn: 'root' 
 })
 export class ApiService {
@@ -28,15 +29,23 @@ export class ApiService {
             })
         );
     }
+    getPasajero(user_id: string): Observable<UserPasajero > {
+        return this._httpclient.get<UserPasajero[]>(this.URL_SUPABASE + 'PASAJERO?nombre_pas=eq.' + user_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
+            map( (userInfo) => {
+                return userInfo[0];
+            })
+        );
+    }
     authUser(): Observable<UserModel> {
         return this._httpclient.get<UserModel>(this.URL_SUPABASE.concat('?username=eq.'), { headers: this.supabaseheaders.set('Accept', 'application/vnd.pgrst.object+json'), responseType: 'json' })
     }
    
-   getLoginPasajero(iUserLogin: IUserLogin): Observable<string | any> {
-        return this._httpclient.get<any>(this.URL_SUPABASE + "PASAJERO?nombre_pas=eq." +  + "&password=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
+   getLoginPasajero(iUserLogin: any): Observable<string | any> {
+        console.log("Usuario existe...", iUserLogin);
+        return this._httpclient.get<any>(this.URL_SUPABASE + "PASAJERO?nombre_pas=eq." + iUserLogin.username  + "&pass_pasajero=eq." + iUserLogin.password, { headers: this.supabaseheaders }).pipe(
             map((user) => {
                 console.log(user[0]);
-                return user[0].user_id;
+                return user[0].pasajero_id;
             }), catchError((err) => {
                 console.log(err)
                 return err;
