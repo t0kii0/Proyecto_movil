@@ -28,7 +28,11 @@
      
      <br>
      <ion-button (click)="userLogin()">Ingresar</ion-button>
-      <ion-button [routerLink]="['/recuperar'] ">¿Olvidaste tu contraseña?</ion-button>
+     <ion-button [routerLink]="['/recuperar'] ">¿Olvidaste tu contraseña?</ion-button>
+     <select [(ngModel)]="userType">
+      <option value="conductor" id="opcion1">Conductor</option>
+      <option value="pasajero" id="opcion2">Pasajero</option>
+    </select>
   </ion-card-content>
  </ion-card>
 </ion-content>
@@ -41,7 +45,7 @@
       <ion-button [routerLink]="['/registro-auto'] ">Registrar Vehiculo</ion-button>
     </ion-buttons>
     <ion-buttons slot ="end">
-      <ion-button [routerLink]="['/home'] ">Home</ion-button>
+      <ion-button [routerLink]="['/home-pasajero'] ">Home</ion-button>
     </ion-buttons>
   </ion-toolbar> 
   
