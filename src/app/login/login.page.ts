@@ -43,18 +43,32 @@ export class LoginPage implements OnInit {
 async ingresar() {
   console.log(this.login);
 
-
-
 }
+userType: string = 'conductor';
 async userLogin() {
   try {
-    var user_id1 = await lastValueFrom(this._usuarioService.getLoginConductor(this.login))  ;
-    //const user_id = user_id1.toString();
-    console.log(user_id1);
-    if (user_id1 && user_id1.patente) {
+
+
+    this.userType=this.userType=='conductor'?'usuario':'pasajero';
+    let user;
+    console.log("Usuario existe...");
+    if (this.userType === 'usuario') {
+    
+      user = await lastValueFrom(this._usuarioService.getLoginConductor(this.login));
+      console.log("Usuario existe...", user);
+    } else if (this.userType === 'pasajero') {
+      user = await lastValueFrom(this._usuarioService.getLoginPasajero(this.login));
+    }
+    console.log("Usuario existe...", user);
+    console.log(user);
+    
+    if (user) {
       console.log("Usuario existe...");
-      localStorage.setItem('user_id',JSON.stringify(user_id1));
-      this.route.navigate(['/home-usuario'], { state: { userInfo: user_id1 } });
+      localStorage.setItem('user_id', JSON.stringify(user));
+      console.log("Usuario existe...");
+      this.route.navigate([`/home-${this.userType}`], { state: { userInfo: user } });
+      
+
     } else {
       // NO EXISTE
       console.log("Usuario no existe...");
