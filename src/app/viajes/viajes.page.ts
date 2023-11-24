@@ -18,11 +18,13 @@ import { AppRoutingModule } from '../app-routing.module';
 
 export class ViajesPage implements OnInit {
   formularioViaje: FormGroup; 
+  
 
   constructor(
     private alertController: AlertController,
     private registrador: CrearViajes,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router,
   ) {
     // Inicializa el formulario con las propiedades y las validaciones
     this.formularioViaje = this.fb.group({ 
@@ -58,12 +60,23 @@ export class ViajesPage implements OnInit {
 
     // Llama a la función para guardar los datos
     this.registrador.guardarViaje(formData).subscribe(
-      (resultado) => {
+      async (resultado) => {
         console.log('Registro guardado con éxito:', resultado);
+        const alert = await this.alertController.create({
+          header: 'Viaje Creado',
+          message:'El viaje a sido creado Correctamente',
+          buttons: ['Aceptar'],
+        });
+          await alert.present();
+          return;
       },
       (error) => {
         console.error('Error al guardar el registro:', error);
       }
     );
+  }
+  verMap(){
+    console.log('Entrando al mapa');
+    this.router.navigate(['/test']);
   }
 }
