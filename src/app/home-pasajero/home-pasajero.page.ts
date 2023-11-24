@@ -82,9 +82,17 @@ export class HomePasajeroPage {
     this.router.navigate(['/login']);
   }
   entrar(){
-    console.log('entrando jeje');
-    this.router.navigate(['/viajes'])
-    
+    console.log('entrando jeje');    
+}
+verMap(){
+  console.log('Entrando al mapa');
+  this.router.navigate(['/test']);
+}
+
+verViajes(){
+  console.log('Saiendo...');
+  this.router.navigate(['/disponible'])
 }
 
 }
+

@@ -46,7 +46,11 @@ const routes: Routes = [
   {
     path: 'home-pasajero',
     loadChildren: () => import('./home-pasajero/home-pasajero.module').then( m => m.HomePasajeroPageModule)
+  },  {
+    path: 'disponible',
+    loadChildren: () => import('./disponible/disponible.module').then( m => m.DisponiblePageModule)
   },
+
 
 
 

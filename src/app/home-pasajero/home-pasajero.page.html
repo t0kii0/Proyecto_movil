@@ -46,12 +46,15 @@
             <ion-item>
               <ion-label>Apellido: {{ user_id.apellido_pas }}</ion-label>
             </ion-item>
+            <ion-item>
+              <ion-label>Telefono: {{ user_id.telefono }}</ion-label>
+            </ion-item>
             
           </ion-card-content>
         </ion-card>
         
-      <ion-button (click)="entrar()" [routerLink]="['/viajes']">Tomar Viaje</ion-button> 
-      
+      <ion-button (click)="verViajes()" [routerLink]="['/viajes']">Tomar Viaje</ion-button> 
+      <ion-button (click)="verMap()" [routerLink]="['/viajes']">Ver Mapa</ion-button> 
       </ion-content>
       
     </div>

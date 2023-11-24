@@ -5,6 +5,7 @@ import { IUserLogin } from '../modelos/UserLogin';
 import { ResponseI } from "../modelos/Response";
 import { UserModel}  from "../modelos/Usersmodel"
 import { UserPasajero } from "../modelos/UserPasajero";
+import { ModelViajes } from "../modelos/Viajes";
 @Injectable({ providedIn: 'root' 
 })
 export class ApiService {
@@ -71,4 +72,27 @@ export class ApiService {
             })
         )
     }
+    //getViaje(viaje_id: string): Observable<ModelViajes> {
+      //  return this._httpclient.get<ModelViajes[]>(this.URL_SUPABASE + 'VIAJE?id_viaje=eq.' + viaje_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
+        //    map( (viajeInfo) => {
+          //      return viajeInfo[0];
+            //})
+        //);
+    //}
+    getViaje(viaje_id: string): Observable<ModelViajes> {
+        return this._httpclient.get<ModelViajes[]>(this.URL_SUPABASE + 'VIAJE?id_viaje=eq.' + viaje_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
+          map((viajeInfoArray) => {
+            console.log('Datos recibidos:', viajeInfoArray);
+      
+            if (viajeInfoArray.length > 0) {
+              return viajeInfoArray[0];
+            } else {
+              console.error('No se encontraron datos para el viaje con id ' + viaje_id);
+              return null;
+            }
+          })
+        );
+      }
+      
+      
 }
