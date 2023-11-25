@@ -24,9 +24,14 @@ ion-title {
   ion-button:hover {
     animation: vibrate 0.3s;
   }
+  ion-footer{
+    font-size: 1px;
+    font-weight: bold;
+  }
   select{
     font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: greenyellow;
+    background-color: rgb(49, 133, 169);
     font-size: 15px;
     font-weight: bold;
   }

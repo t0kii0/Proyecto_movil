@@ -14,6 +14,7 @@ import { IUserLogin} from '../modelos/UserLogin';
 import { CommonModule, NgFor, NgForOf } from '@angular/common';
 import { firstValueFrom, lastValueFrom } from 'rxjs';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -29,7 +30,7 @@ export class LoginPage implements OnInit {
   login={
   username: '',
   password: ''}
-  constructor(private route: Router, private _usuarioService: ApiService) {
+  constructor(private route: Router, private _usuarioService: ApiService, private alertController: AlertController) {
 
   }
    
@@ -72,15 +73,28 @@ async userLogin() {
     } else {
       // NO EXISTE
       console.log("Usuario no existe...");
+      await this.presentAlert('Error al iniciar sesión', 'Las credenciales ingresadas son incorrectas');
+
+      
     }
   } catch (error) {
     console.error("Error al iniciar sesión:", error);
+    await this.presentAlert('Error al iniciar sesión', 'Ha ocurrido un error al intentar iniciar sesión.');
+
   }
 }
-
 
 formularioLoginRestart():void{
   this.formularioLogin.username = '';
   this.formularioLogin.password = '';
+}
+async presentAlert(header: string, message: string) {
+  const alert = await this.alertController.create({
+    header: header,
+    message: message,
+    buttons: ['OK']
+  });
+
+  await alert.present();
 }
 }

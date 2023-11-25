@@ -1,4 +1,72 @@
-.map {
+
+  ion-title {
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: greenyellow;
+    font-size: 24px;
+    font-weight: bold;
+    
+  }
+  ion-card{
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 10px;
+    font-style: italic;
+    font-weight: bold;
+  }
+  ion-card-title{
+    font-style: italic;
+    font-weight: bolder;
+  }
+  ion-button{
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: greenyellow;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  ion-button:hover {
+    animation: vibrate 0.3s;
+  }
+  select{
+    font-family:  'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: greenyellow;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  
+  @keyframes vibrate {
+    0% {
+      transform: translateX(0);
+    }
+    20% {
+      transform: translateX(-5px);
+    }
+    40% {
+      transform: translateX(5px);
+    }
+    60% {
+      transform: translateX(-5px);
+    }
+    80% {
+      transform: translateX(5px);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  .header-content {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .logo-container {
+    margin-right: 1px; 
+  }
+  
+  .logo {
+    width: 50px; 
+    height: auto; 
+    margin-left: 15px;
+  }
+  .map {
     position: absolute;
     height: 100%;
     width: 100%;
@@ -9,4 +77,9 @@
   
   .map.visible {
     opacity: 1;
+  }
+  ion-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
   }

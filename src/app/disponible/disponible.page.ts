@@ -5,7 +5,7 @@ import { ApiService } from '../services/user_services';
 
 @Component({
   selector: 'app-disponible',
-  templateUrl: './disponible.page.html',
+  templateUrl: './disponible.page.html', 
   styleUrls: ['./disponible.page.scss'],
 })
 export class DisponiblePage implements OnInit {
