@@ -79,17 +79,19 @@ export class ApiService {
             //})
         //);
     //}
-    getViaje(viaje_id: string): Observable<ModelViajes> {
+    
+    getViaje(viaje_id: any): Observable<ModelViajes> {
         return this._httpclient.get<ModelViajes[]>(this.URL_SUPABASE + 'VIAJE?id_viaje=eq.' + viaje_id, { headers: this.supabaseheaders, responseType: 'json' }).pipe(
           map((viajeInfoArray) => {
             console.log('Datos recibidos:', viajeInfoArray);
+            return viajeInfoArray[0];
       
-            if (viajeInfoArray.length > 0) {
-              return viajeInfoArray[0];
-            } else {
-              console.error('No se encontraron datos para el viaje con id ' + viaje_id);
-              return null;
-            }
+            //if (viajeInfoArray) {
+             //console.log('Datos recibidos:', viajeInfoArray);
+            //} else {
+              //console.error('No se encontraron datos para el viaje con id ' + viaje_id);
+              //return null;
+            //}
           })
         );
       }
