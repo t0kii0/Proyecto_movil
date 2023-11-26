@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, map } from 'rxjs';
+import { Observable, catchError, map, of } from 'rxjs';
 import { ModelViajes } from 'src/app/modelos/Viajes';
 
 @Injectable({
@@ -15,4 +15,9 @@ export class CrearViajes {
   guardarViaje(registros1: ModelViajes): Observable<string | any>{
       return this._http.post<any>(this.superbaseUrl+'VIAJE',registros1,{headers: this.supabaseHeaders});
 }
+obtenerTodosLosViajes(): Observable<ModelViajes[]> {
+  return this._http.get<ModelViajes[]>(this.superbaseUrl + 'VIAJE', { headers: this.supabaseHeaders });
 }
+}
+
+

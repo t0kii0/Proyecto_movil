@@ -1,54 +1,29 @@
-import {ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { Observable, map, of, switchMap } from 'rxjs';
-import { ModelViajes } from '../modelos/Viajes';
-import { ApiService } from '../services/user_services';
-import { catchError, tap } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { CrearViajes } from '../services/crear-viajes/registrar-viajes';
+import { ModelViajes } from 'src/app/modelos/Viajes';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-disponible',
-  templateUrl: './disponible.page.html', 
+  selector: 'app-mostrar-viajes',
+  templateUrl: './disponible.page.html',
   styleUrls: ['./disponible.page.scss'],
 })
-export class DisponiblePage{
+export class DisponiblePage implements OnInit {
+  viajes: ModelViajes[] = [];
 
-  viajeInfo: Observable<ModelViajes | any>;
-  viaje_id!: any;
-  
+  constructor(private obtenerViajes: CrearViajes, private router: Router) { }
 
-  constructor(private _viajeService: ApiService,private cdr: ChangeDetectorRef) {
-    //this.viajeInfo = this._viajeService.getViaje(this.viaje_id); 
-    this.viaje_id = JSON.parse(localStorage.getItem('viaje_id') || '') || '';
-    console.log(JSON.stringify(this.viaje_id));
-    console.log(localStorage.getItem('viaje_id'));
-    this.viajeInfo = this._viajeService.getViaje(this.viaje_id);
-  }
-  
   ngOnInit() {
-    //this.getViajeInfo();
+    this.obtenerViajes.obtenerTodosLosViajes().subscribe(
+      (data: ModelViajes[]) => {
+        this.viajes = data;
+      },
+      error => {
+        console.error('Error al obtener los viajes', error);
+      }
+    );
   }
-  async getViajeInfo(){
-    console.log(this.viaje_id);
-    
-    if (this.viaje_id) {
-      
-      this.viajeInfo = this._viajeService.getViaje(this.viaje_id).pipe(
-        catchError((error) => {
-          console.log('Error al obtener el usuario', error);
-          return of(null);
-        }),
-        tap((data) => {
-          if (data) {
-            console.log('viaje_id', data);
-          } else {
-            console.log('No se pudo obtener el viaje');
-            console.log(this.viaje_id);
-            console.log(data);
-          }
-          this.cdr.detectChanges();
-        })
-      );
-    } else {
-      console.log('user_id es undefined, no se puede realizar la solicitud a Supabase.');
-    }
-  } 
+  verMap(){
+    this.router.navigate(['./test']);
+  }
 }
