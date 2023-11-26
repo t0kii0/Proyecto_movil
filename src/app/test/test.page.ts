@@ -36,16 +36,6 @@ export class TestPage implements OnInit, OnDestroy {
 
   async loadMap() {
     try {
-      const sourceAddress = 'origen'; // Reemplaza con la dirección de origen
-      const destAddress = 'destino'; // Reemplaza con la dirección de destino
-      
-      const sourceCoords = await this.getCoordinates(sourceAddress);
-      const destCoords = await this.getCoordinates(destAddress);
-
-      this.source = { lat: sourceCoords.results[0].geometry.location.lat, lng: sourceCoords.results[0].geometry.location.lng };
-      this.dest = { lat: destCoords.results[0].geometry.location.lat, lng: destCoords.results[0].geometry.location.lng };
-
-
       console.log('map');
       let googleMaps: any = await this.maps.loadGoogleMaps();
       const mapEl = this.mapElementRef.nativeElement;
@@ -113,7 +103,6 @@ export class TestPage implements OnInit, OnDestroy {
       console.log(e);
     }
   }
-  
 
   drawRoute() {
     this.directionsService.route({
@@ -145,14 +134,6 @@ export class TestPage implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.trackSub) this.trackSub.unsubscribe();
   }
-  async getCoordinates(address: string): Promise<any> {
-    try {
-      const response = await this.maps.getCoordinates(address);
-      return response;
-    } catch (error) {
-      throw new Error('Error al obtener las coordenadas');
-    }
 
 
-}
 }
