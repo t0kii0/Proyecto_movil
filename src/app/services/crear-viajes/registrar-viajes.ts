@@ -18,6 +18,14 @@ export class CrearViajes {
 obtenerTodosLosViajes(): Observable<ModelViajes[]> {
   return this._http.get<ModelViajes[]>(this.superbaseUrl + 'VIAJE', { headers: this.supabaseHeaders });
 }
+
+actualizarAsientosDisponibles(idViaje: number, nuevosAsientos: number): Observable<any> {
+  const url = `${this.superbaseUrl}VIAJE?id_viaje=eq.${idViaje}`;
+  const body = { asientos_disp: nuevosAsientos };
+
+  return this._http.patch(url, body, { headers: this.supabaseHeaders });
+}
+
 }
 
 
