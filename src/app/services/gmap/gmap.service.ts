@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GmapService {
-  private API_KEY = 'AIzaSyBVrce6qA16MEIOhtiEBxrqMCRvEBr66AA';
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   loadGoogleMaps(): Promise<any> {
     const win = window as any;
@@ -32,10 +30,5 @@ export class GmapService {
         }
       };
   });
-}
-getCoordinates(address: string): Promise<any> {
-  const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${this.API_KEY}`;
-  
-  return this.http.get(url).toPromise();
 }
 }

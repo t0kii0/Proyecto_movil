@@ -16,7 +16,13 @@ export class CrearViajes {
       return this._http.post<any>(this.superbaseUrl+'VIAJE',registros1,{headers: this.supabaseHeaders});
 }
 obtenerTodosLosViajes(): Observable<ModelViajes[]> {
-  return this._http.get<ModelViajes[]>(this.superbaseUrl + 'VIAJE', { headers: this.supabaseHeaders });
+  return this._http.get<ModelViajes[]>(this.superbaseUrl + 'VIAJE', { headers: this.supabaseHeaders })
+    .pipe(
+      catchError(error => {
+        console.error('Error al obtener viajes:', error);
+        return of([]); // Devolver un array vacío en caso de error
+      })
+    );
 }
 
 actualizarAsientosDisponibles(idViaje: number, nuevosAsientos: number): Observable<any> {
@@ -25,7 +31,10 @@ actualizarAsientosDisponibles(idViaje: number, nuevosAsientos: number): Observab
 
   return this._http.patch(url, body, { headers: this.supabaseHeaders });
 }
-
+getViaje(viaje_id: any): Observable<ModelViajes> {
+  const url = `${this.superbaseUrl}VIAJE?id_viaje=eq.${viaje_id}`;
+  return this._http.get<ModelViajes>(url);
+}
 }
 
 

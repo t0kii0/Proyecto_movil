@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CrearViajes } from '../services/crear-viajes/registrar-viajes';
 import { ModelViajes } from 'src/app/modelos/Viajes';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mostrar-viajes',
@@ -12,7 +12,7 @@ import { AlertController } from '@ionic/angular';
 export class DisponiblePage implements OnInit {
   viajes: ModelViajes[] = [];
 
-  constructor(private obtenerViajes: CrearViajes, private router: Router, private alertController : AlertController ) { }
+  constructor(private obtenerViajes: CrearViajes, private router: Router, private alertController : AlertController, private navCtrl: NavController ) { }
 
   ngOnInit() {
     this.obtenerViajes.obtenerTodosLosViajes().subscribe(
@@ -74,7 +74,18 @@ export class DisponiblePage implements OnInit {
   }
   
   
-  verMap(){
-    this.router.navigate(['./test']);
+  verMap(viaje: ModelViajes) {
+    // Verifica si el viaje tiene datos antes de navegar
+    if (viaje) {
+      console.log('Viaje seleccionado para ver el mapa:', viaje);
+      // Pasa el viaje seleccionado al componente del mapa
+      this.navCtrl.navigateForward(['/test'], {
+        state: {
+          viajeSeleccionado: viaje
+        }
+      });
+    } else {
+      console.error('Error: El viaje seleccionado no tiene datos.');
+    }
   }
 }
