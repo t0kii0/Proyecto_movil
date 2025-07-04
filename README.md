@@ -19,7 +19,7 @@ Brindar una solución colaborativa de transporte para estudiantes que enfrentan 
 - 👤 **Registro e inicio de sesión de usuarios**
 - 📍 **Selección de origen y destino**
 - 📅 **Agendamiento de viajes**
-- 💬 (Pendiente de integración) Sistema de comunicación entre usuarios
+
 
 ---
 
@@ -36,7 +36,7 @@ Brindar una solución colaborativa de transporte para estudiantes que enfrentan 
 
 ## 🧪 Estado actual
 
-- App funcional con flujo de usuario básico implementado.
+- App No funcional con flujo de usuario básico implementado.
 - No cuenta con backend en línea ni base de datos activa actualmente.
 - Requiere simulación o integración local para pruebas.
 
@@ -57,7 +57,7 @@ Brindar una solución colaborativa de transporte para estudiantes que enfrentan 
 
 ```bash
 # Clona este repositorio
-git clone https://github.com/t0kii0/LandingCrisalida
+git clone https://github.com/t0kii0/Proyecto_movil
 
 # Entra a la carpeta del proyecto
 cd (nombre carpeta en donde se clono el repositorio)
